@@ -14,9 +14,7 @@ const app = express();
 const morganOption = (NODE_ENV === 'production') ? "tiny" : "common"
 
 app.use(
-  cors({
-      origin: CLIENT_ORIGIN
-  })
+  cors()
 );
 app.use(morgan(morganOption));
 app.use(helmet());
@@ -24,6 +22,7 @@ app.use(helmet());
 
 
 app.use(validateBearerToken);
+
 
 app.use("/api/folders", folderRouter)
 app.use("/api/notes", notesRouter)
